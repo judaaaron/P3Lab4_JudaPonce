@@ -7,6 +7,8 @@ string nombre, apellido, password;
 int personaIngresada;
 
 vector <persona> personas;
+string cifradoAdelante (string,int);
+string cifradoAtras (string, int);
 int main(int argc, char** argv) {
 	persona* prtpersona=NULL;
 	bool exit = true;
@@ -67,6 +69,7 @@ int main(int argc, char** argv) {
 					switch(option){
 						case 1:{
 							
+							
 							break;
 						}
 						
@@ -107,3 +110,28 @@ int main(int argc, char** argv) {
 	
 	return 0;
 }
+
+
+
+string cifradoAdelante (string word, int key){
+	string newCadena = "";
+	for (int i = 0; i < word.size(); i++){
+		char ascii = word[i];
+		ascii += key;
+		newCadena += ascii;
+	}
+	
+	return newCadena;
+}
+
+string cifradoAtras (string word, int key){
+	string newCadena = "";
+	for (int i = 0; i < word.size(); i++){
+		char ascii = word[i];
+		ascii -= key;
+		newCadena += ascii;
+	}
+	
+	return newCadena;
+}
+

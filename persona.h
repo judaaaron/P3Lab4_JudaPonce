@@ -14,6 +14,8 @@ class persona
 		string getPassword();
 		int getKey();
 		vector<string>& getMensajes();
+		string cifradoAdelante (string,int);
+		string cifradoAtras (string,int);
 		
 		~persona();
 	private:

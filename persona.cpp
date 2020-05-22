@@ -37,6 +37,8 @@ persona::persona(string nombre,string apellido,string password){
 	this->password=password;
 	this->llave= 1 + rand() % 15;
 }
+
+
 persona::~persona()
 {
 	
