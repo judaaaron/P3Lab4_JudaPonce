@@ -2,12 +2,36 @@
 #include<cstdlib>
 #include <ctime>
 #include<iomanip>
+#include<string>
+
+
 
 persona::persona()
 {
+	
 }
 
-persona::persona(string nombre,string apellido , string password){
+string persona::getNombre(){
+	return nombre;
+}
+
+string persona::getApellido(){
+	return apellido;
+}
+
+string persona::getPassword(){
+	return password;
+}
+
+int persona::getKey(){
+	return llave;
+}
+
+vector <string>& persona::getMensajes(){
+	
+	return mensajes;
+}
+persona::persona(string nombre,string apellido,string password){
 	this->nombre=nombre;
 	this->apellido=apellido;
 	this->password=password;
@@ -15,4 +39,7 @@ persona::persona(string nombre,string apellido , string password){
 }
 persona::~persona()
 {
+	
+	
+	
 }

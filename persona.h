@@ -9,13 +9,19 @@ class persona
 	public:
 		persona();
 		persona(string,string ,string );
+		string getNombre();
+		string getApellido();
+		string getPassword();
+		int getKey();
+		vector<string>& getMensajes();
+		
 		~persona();
 	private:
 		string nombre;
 		string apellido;
 		string password;
 		int llave;
-		vector<string> *mensajes;
+		vector<string> mensajes;
 		
 };
 
