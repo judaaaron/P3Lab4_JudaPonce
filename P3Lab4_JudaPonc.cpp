@@ -68,13 +68,32 @@ int main(int argc, char** argv) {
 					
 					switch(option){
 						case 1:{
+							int destinoMensaje;
+							cout<<"Usuarios"<<endl;
+							for(int i=0; i< personas.size(); i++){
+								cout<<personas[i].getNombre()<<" "<<personas[i].getApellido()<<endl;
+								destinoMensaje=i;
+							}
+							int destinatario;
+							cout<<" Seleccione destinatario: "<<endl;
+							cin>>destinatario;
+							string mensaje;
+							cout<< "NOTA: No ingrese espacios, en lugar de ello, coloque un '_'."<<endl;
+							cout<<" Ingrese mensaje: ";
+							cin>>mensaje;
+							personas[destinatario].getMensajes().push_back(mensaje);
+							
+							
 							
 							
 							break;
 						}
 						
 						case 2: {
-							
+							cout << "Mensajes recibidos:" << endl << endl;
+									for (int i = 0; i < personas[personaIngresada].getMensajes().size(); i++){
+										cout << personas[personaIngresada].getMensajes()[i] << endl; 
+									}
 							
 							break;
 						}
