@@ -73,8 +73,9 @@ int main(int argc, char** argv) {
 								for (int i = 0; i < personas.size(); i++){
 									cout << ". " << personas[i].getNombre() << endl;
 								}
-							int letras = 0;
-							int destinatario;;
+							
+							int destinatario;
+							string newmensaje;
 							cout << "Seleccione destinatario: "; 
 							cout<<"-NOTA: la lista empieza en 0"<<endl;
 							cin >> destinatario;
@@ -83,58 +84,54 @@ int main(int argc, char** argv) {
 							string mensaje;
 							cout << "Escribe el mensaje: "; 
 							cin >> mensaje;
-							string newmensaje;
+						if(personas[destinatario].getKey() !=0){
+							
 							for (int random = personas[destinatario].getKey(); random > 0 ; random--){
-								string *arreglo = NULL;
-								arreglo = new string [mensaje.size()/random+1];
-																						
-											for (int i = 0; i < mensaje.size()/random+1; i++){
-												for (int j = 0; j < random; j++){
-													arreglo[i] += mensaje[letras];
-													letras ++; 
-												}
-											}
-											
-											for (int i = 0; i < mensaje.size()/random+1; i++){
-												if (i % 2 == 0){
-													arreglo[i] = cifradoAdelante(arreglo[i],random);
-												} else {
-													arreglo[i] = cifradoAtras(arreglo[i],random);
-												}
-											}
-											
-											
-											
-											newmensaje = "";
-											for (int i = 0;i < mensaje.size()/random+1; i++){
-												for (int j = 0; j < random; j++){
-													newmensaje += arreglo[i][j];
-												}
-											}
-											mensaje = newmensaje;
-											
+								string *separarPalabra = NULL;
+								separarPalabra = new string [mensaje.size()/random+1];	
+								int letras = 0;	
+								for (int i = 0; i < mensaje.size()/random+1; i++){
+									
+									for (int j = 0; j < random; j++){
+											separarPalabra[i] += mensaje[letras];
+											letras ++; 
+									}
+								}		
+								for (int i = 0; i < mensaje.size()/random+1; i++){
+									if (i % 2 == 0){
+											separarPalabra[i] = cifradoAdelante(separarPalabra[i],random);
+										} else {
+											separarPalabra[i] = cifradoAtras(separarPalabra[i],random);
 										}
+									}
+									newmensaje = "";
+									for (int i = 0;i < mensaje.size()/random+1; i++){
+										for (int j = 0; j < random; j++){
+												newmensaje += separarPalabra[i][j];
+										}
+									}
+									mensaje = newmensaje;
+											
+							}
 							personas[destinatario].getMensajes().push_back((char)personaIngresada + mensaje);
 							cout<<"***Mensaje enviado exitosamente***"<<endl;
 								
-		
+						}
 					
 							
 							break;
 						}
 						
 						case 2: {
-							cout << "***Ver mensajes***:" << endl;
-							for (int i = 0; i < personas[personaIngresada].getMensajes().size(); i++){				
-								personas[personaIngresada].getMensajes()[i];
-								cout <<  personas[personaIngresada].getMensajes()[i] << endl; 
-										
-							}
-							
-							
-							
-						
-						
+								if (personas[personaIngresada].getMensajes().size() == 0){
+									cout << "Tu lista de mensajes esta vacia." << endl;
+								} else {
+									cout << "***Ver mensajes***:" << endl;
+									for (int i = 0; i < personas[personaIngresada].getMensajes().size(); i++){				
+										personas[personaIngresada].getMensajes()[i];
+										cout <<  personas[personaIngresada].getMensajes()[i] << endl; 			
+									}
+								}
 							break;
 						}
 						
