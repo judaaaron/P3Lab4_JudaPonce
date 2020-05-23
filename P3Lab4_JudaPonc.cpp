@@ -71,7 +71,7 @@ int main(int argc, char** argv) {
 							int destinoMensaje;
 							cout<<" Usuarios: "<<endl;
 								for (int i = 0; i < personas.size(); i++){
-									cout << ". " << personas[i].getNombre() << endl;
+									cout << personas[i].getNombre() << " "<<personas[i].getApellido() << endl;
 								}
 							
 							int destinatario;
