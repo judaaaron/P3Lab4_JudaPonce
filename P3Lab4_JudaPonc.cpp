@@ -1,5 +1,5 @@
 #include <iostream>
-#include "persona.h"
+#include "persona.cpp"
 #include<vector>
 
 using namespace std;
@@ -65,36 +65,76 @@ int main(int argc, char** argv) {
 					cout<<"(4) Salir"<<endl;
 					cout<<"->Ingrese su opcion: "<<endl;
 					cin>>option;
-					
+					string mensaje;
 					switch(option){
 						case 1:{
 							int destinoMensaje;
-							cout<<"Usuarios"<<endl;
-							for(int i=0; i< personas.size(); i++){
-								cout<<personas[i].getNombre()<<" "<<personas[i].getApellido()<<endl;
-								destinoMensaje=i;
-							}
-							int destinatario;
-							cout<<" Seleccione destinatario: "<<endl;
-							cin>>destinatario;
+							cout<<" Usuarios: "<<endl;
+								for (int i = 0; i < personas.size(); i++){
+									cout << ". " << personas[i].getNombre() << endl;
+								}
+							int letras = 0;
+							int destinatario;;
+							cout << "Seleccione destinatario: "; 
+							cout<<"-NOTA: la lista empieza en 0"<<endl;
+							cin >> destinatario;
+							cout<<"-NOTA: No ingrese espacios, en lugar de ello, coloque un '_'."<<endl;
+							cout << endl;
 							string mensaje;
-							cout<< "NOTA: No ingrese espacios, en lugar de ello, coloque un '_'."<<endl;
-							cout<<" Ingrese mensaje: ";
-							cin>>mensaje;
-							personas[destinatario].getMensajes().push_back(mensaje);
-							
-							
-							
+							cout << "Escribe el mensaje: "; 
+							cin >> mensaje;
+							string newmensaje;
+							for (int random = personas[destinatario].getKey(); random > 0 ; random--){
+								string *arreglo = NULL;
+								arreglo = new string [mensaje.size()/random+1];
+																						
+											for (int i = 0; i < mensaje.size()/random+1; i++){
+												for (int j = 0; j < random; j++){
+													arreglo[i] += mensaje[letras];
+													letras ++; 
+												}
+											}
+											
+											for (int i = 0; i < mensaje.size()/random+1; i++){
+												if (i % 2 == 0){
+													arreglo[i] = cifradoAdelante(arreglo[i],random);
+												} else {
+													arreglo[i] = cifradoAtras(arreglo[i],random);
+												}
+											}
+											
+											
+											
+											newmensaje = "";
+											for (int i = 0;i < mensaje.size()/random+1; i++){
+												for (int j = 0; j < random; j++){
+													newmensaje += arreglo[i][j];
+												}
+											}
+											mensaje = newmensaje;
+											
+										}
+							personas[destinatario].getMensajes().push_back((char)personaIngresada + mensaje);
+							cout<<"***Mensaje enviado exitosamente***"<<endl;
+								
+		
+					
 							
 							break;
 						}
 						
 						case 2: {
-							cout << "Mensajes recibidos:" << endl << endl;
-									for (int i = 0; i < personas[personaIngresada].getMensajes().size(); i++){
-										cout << personas[personaIngresada].getMensajes()[i] << endl; 
-									}
+							cout << "***Ver mensajes***:" << endl;
+							for (int i = 0; i < personas[personaIngresada].getMensajes().size(); i++){				
+								personas[personaIngresada].getMensajes()[i];
+								cout <<  personas[personaIngresada].getMensajes()[i] << endl; 
+										
+							}
 							
+							
+							
+						
+						
 							break;
 						}
 						
